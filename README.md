@@ -45,13 +45,13 @@ Permitir que o usuário crie **entidades personalizadas**, definindo suas propri
 
 ### Entity
 
-- `GET /entity/` — Listar todas
-- `GET /entity/count` — Contar entidades
-- `GET /entity/name/{name}` — Buscar por nome
-- `GET /entity/id/{id}` — Buscar por ID
-- `POST /entity/new` — Criar nova entidade
-- `PUT /entity/rename` — Renomear
-- `DELETE /entity/{id}` — Excluir
+- `GET /entity/`
+- `GET /entity/count`
+- `GET /entity/name/{name}`
+- `GET /entity/id/{id}`
+- `POST /entity/new`
+- `PUT /entity/rename`
+- `DELETE /entity/{id}`
 
 ### Property
 
@@ -76,7 +76,7 @@ Permitir que o usuário crie **entidades personalizadas**, definindo suas propri
 
 ---
 
-## 🚀 Como Rodar o Projeto
+## 🚀 Como Rodar o Projeto - Linux
 
 1. **Clonar o repositório:**
 
@@ -112,18 +112,8 @@ Isso permite a evolução do sistema sem perda de desempenho.
 
 ---
 
-## 📌 Contribuição
-
-Pull requests são bem-vindos! Para mudanças maiores, por favor abra uma issue antes para discutir o que você gostaria de alterar.
-
----
-
-## 🧠 Autor
+## 🧠
 
 Desenvolvido como parte do **Desafio Final** do Bootcamp [Arquiteto(a) de Software].
 
 ---
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
