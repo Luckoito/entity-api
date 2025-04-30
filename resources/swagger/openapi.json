@@ -1,0 +1,329 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "version": "1.0.0",
+        "description": "Documentação das rotas da API para entidades, propriedades e instâncias."
+    },
+    "paths": {
+        "/api/entity": {
+            "get": {
+                "summary": "Listar entidades",
+                "operationId": "getEntities",
+                "tags": ["Entity"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de entidades retornada com sucesso.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/entity/{entity_name}": {
+            "get": {
+                "summary": "Obter detalhes de uma entidade",
+                "operationId": "getEntity",
+                "tags": ["Entity"],
+                "parameters": [
+                    {
+                        "name": "entity_name",
+                        "in": "path",
+                        "required": true,
+                        "description": "Nome da entidade",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes da entidade retornados com sucesso.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/entity/new": {
+            "post": {
+                "summary": "Criar nova entidade",
+                "operationId": "createEntity",
+                "tags": ["Entity"],
+                "requestBody": {
+                    "description": "Dados para criação da entidade",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Nome da entidade"
+                                    },
+                                  "properties": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "Lista de propriedades da entidade"
+                                    }
+                                },
+                                "required": ["name", "properties"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Entidade criada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/entity/rename": {
+            "put": {
+                "summary": "Renomear entidade",
+                "operationId": "renameEntity",
+                "tags": ["Entity"],
+                "requestBody": {
+                    "description": "Dados para renomear a entidade",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "description": "Id da entidade"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Novo nome da entidade"
+                                    }
+                                },
+                                "required": ["id", "name"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Entidade renomeada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/entity/{entity_id}": {
+            "delete": {
+                "summary": "Deletar entidade",
+                "operationId": "deleteEntity",
+                "tags": ["Entity"],
+                "parameters": [
+                    {
+                        "name": "entity_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID da entidade",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entidade deletada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/property/new": {
+            "post": {
+                "summary": "Criar nova propriedade",
+                "operationId": "createProperty",
+                "tags": ["Property"],
+                "requestBody": {
+                    "description": "Dados para criação da propriedade",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Nome da propriedade"
+                                    },
+                                    "entity_id": {
+                                        "type": "integer",
+                                        "description": "ID da entidade associada"
+                                    }
+                                },
+                                "required": ["name", "entity_id"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Propriedade criada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/property/rename": {
+            "put": {
+                "summary": "Renomear propriedade",
+                "operationId": "renameProperty",
+                "tags": ["Property"],
+                "requestBody": {
+                    "description": "Dados para renomear a propriedade",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "description": "ID da propriedade"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Novo nome da propriedade"
+                                    }
+                                },
+                                "required": ["id", "name"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Propriedade renomeada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/property/{property_id}": {
+            "delete": {
+                "summary": "Deletar propriedade",
+                "operationId": "deleteProperty",
+                "tags": ["Property"],
+                "parameters": [
+                    {
+                        "name": "property_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID da propriedade",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Propriedade deletada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/instance/new": {
+            "post": {
+                "summary": "Criar nova instância",
+                "operationId": "createInstance",
+                "tags": ["Instance"],
+                "requestBody": {
+                    "description": "Dados para criação da instância",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "entity_id": {
+                                        "type": "integer",
+                                        "description": "ID da entidade associada"
+                                    },
+                                    "properties": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "Propriedades e seus valores"
+                                    }
+                                },
+                                "required": ["entity_id", "properties"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Instância criada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/instance/update": {
+            "put": {
+                "summary": "Atualizar instância",
+                "operationId": "updateInstance",
+                "tags": ["Instance"],
+                "requestBody": {
+                    "description": "Dados para atualizar a instância",
+                    "required": true,
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Instância atualizada com sucesso."
+                    }
+                }
+            }
+        },
+        "/api/instance/{instance_id}": {
+            "delete": {
+                "summary": "Deletar instância",
+                "operationId": "deleteInstance",
+                "tags": ["Instance"],
+                "parameters": [
+                    {
+                        "name": "instance_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID da instância",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Instância deletada com sucesso."
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Entity",
+            "description": "Operações relacionadas a entidades"
+        },
+        {
+            "name": "Property",
+            "description": "Operações relacionadas a propriedades"
+        },
+        {
+            "name": "Instance",
+            "description": "Operações relacionadas a instâncias"
+        }
+    ]
+}
