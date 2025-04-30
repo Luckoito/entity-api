@@ -107,7 +107,7 @@ A tabela `instance_data` pode crescer muito conforme o uso da aplicação. Para 
 
 - **Particionamento horizontal** por entidade ou por tipo de propriedade.
 - **Indexação em colunas estratégicas**, como `instance_id`, `property_id`.
-- **Fragmentação** da tabela **instance_data** em uma tabela para cada tipo de dado.
+- **Fragmentação** da tabela `instance_data` em uma tabela para cada tipo de dado.
 
 Isso permite a evolução do sistema sem perda de desempenho.
 
