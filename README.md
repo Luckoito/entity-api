@@ -106,7 +106,8 @@ A API estará disponível em `http://localhost`.
 A tabela `instance_data` pode crescer muito conforme o uso da aplicação. Para garantir performance, foi projetada com possibilidade de:
 
 - **Particionamento horizontal** por entidade ou por tipo de propriedade.
-- **Indexação em colunas estratégicas**, como `instance_id`, `property_id` e `value`.
+- **Indexação em colunas estratégicas**, como `instance_id`, `property_id`.
+- **Fragmentação** da tabela **instance_data** em uma tabela para cada tipo de dado.
 
 Isso permite a evolução do sistema sem perda de desempenho.
 
