@@ -1,61 +1,129 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# EntityAPI
 
-## About Laravel
+Uma API RESTful universal desenvolvida em Laravel, capaz de cadastrar qualquer entidade com propriedades e dados dinâmicos. Ideal para aplicações genéricas, sistemas de metadata e modelagem de dados flexível.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Objetivo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Permitir que o usuário crie **entidades personalizadas**, definindo suas propriedades e registrando instâncias dessas entidades, tudo via endpoints REST. A estrutura é extensível e preparada para cenários de alta escalabilidade.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Tecnologias Utilizadas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Laravel** (Framework PHP - MVC)
+- **SQLite** (banco de testes, facilmente substituível por MySQL)
+- **Docker + Docker Compose** (ambiente containerizado)
+- **PHP 8+**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🧱 Estrutura do Projeto
 
-## Laravel Sponsors
+```
+.
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/       # EntityController, PropertyController, InstanceController
+│   │   └── Requests/          # Validação de requisições (EntityRequest, etc.)
+│   ├── Models/                # Modelos: Entity, Property, Instance, InstanceData
+│   └── Repositories/          # Lógica de persistência separada por entidade
+├── routes/
+│   └── api.php                # Rotas organizadas por prefixo
+├── database/
+│   ├── migrations/            # Todas as tabelas necessárias
+│   └── database.sqlite        # Banco de dados local para testes
+├── docker-compose.yml         # Orquestração dos containers
+├── Dockerfile                 # Ambiente Laravel customizado
+├── entrypoint.sh              # Script de setup
+└── .env                       # Variáveis de ambiente
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 📚 Endpoints Disponíveis
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+### Entity
 
-## Contributing
+- `GET /entity/` — Listar todas
+- `GET /entity/count` — Contar entidades
+- `GET /entity/name/{name}` — Buscar por nome
+- `GET /entity/id/{id}` — Buscar por ID
+- `POST /entity/new` — Criar nova entidade
+- `PUT /entity/rename` — Renomear
+- `DELETE /entity/{id}` — Excluir
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Property
 
-## Code of Conduct
+- `GET /property/`
+- `GET /property/id/{id}`
+- `GET /property/name/{name}`
+- `GET /property/count`
+- `POST /property/new`
+- `PUT /property/rename`
+- `DELETE /property/{id}`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Instance
 
-## Security Vulnerabilities
+- `GET /instance/`
+- `GET /instance/count`
+- `GET /instance/entity/{name}`
+- `GET /instance/id/{id}`
+- `GET /instance/data`
+- `POST /instance/new`
+- `PUT /instance/update`
+- `DELETE /instance/{id}`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🚀 Como Rodar o Projeto
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Clonar o repositório:**
+
+```bash
+git clone https://github.com/seu-usuario/entity-api.git
+cd entity-api
+```
+
+2. **Dar permissão ao script de entrada:**
+
+```bash
+chmod +x entrypoint.sh
+```
+
+3. **Subir a aplicação com Docker Compose:**
+
+```bash
+docker compose up --build
+```
+
+A API estará disponível em `http://localhost`.
+
+---
+
+## ⚙️ Otimização e Escalabilidade
+
+A tabela `instance_data` pode crescer muito conforme o uso da aplicação. Para garantir performance, foi projetada com possibilidade de:
+
+- **Particionamento horizontal** por entidade ou por tipo de propriedade.
+- **Indexação em colunas estratégicas**, como `instance_id`, `property_id` e `value`.
+
+Isso permite a evolução do sistema sem perda de desempenho.
+
+---
+
+## 📌 Contribuição
+
+Pull requests são bem-vindos! Para mudanças maiores, por favor abra uma issue antes para discutir o que você gostaria de alterar.
+
+---
+
+## 🧠 Autor
+
+Desenvolvido como parte do **Desafio Final** do Bootcamp [Arquiteto(a) de Software].
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
