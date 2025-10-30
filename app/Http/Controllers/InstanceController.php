@@ -10,10 +10,20 @@ use App\Repositories\PropertyRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * Class InstanceController
+ * @package App\Http\Controllers
+ */
 class InstanceController extends Controller
 {
+    /**
+     * @var InstanceRepository
+     */
     private $repository;
 
+    /**
+     * InstanceController constructor.
+     */
     public function __construct()
     {
         $this->repository = new InstanceRepository();
@@ -21,7 +31,8 @@ class InstanceController extends Controller
 
     /**
      * Returns all instances.
-     * @return JsonResponse
+     *
+     * @return JsonResponse A JSON response containing all instances.
      */
     public function all(): JsonResponse
     {
@@ -31,7 +42,8 @@ class InstanceController extends Controller
 
     /**
      * Counts the number of instances.
-     * @return JsonResponse
+     *
+     * @return JsonResponse A JSON response containing the total number of instances.
      */
     public function count(): JsonResponse
     {
@@ -40,8 +52,9 @@ class InstanceController extends Controller
 
     /**
      * Returns all instances of a given entity.
-     * @param string $entity_name
-     * @return JsonResponse
+     *
+     * @param string $entity_name The name of the entity.
+     * @return JsonResponse A JSON response containing the instances of the entity.
      */
     public function index(string $entity_name): JsonResponse
     {
@@ -51,8 +64,9 @@ class InstanceController extends Controller
 
     /**
      * Returns a specific instance by its ID.
-     * @param int $instance_id
-     * @return JsonResponse
+     *
+     * @param int $instance_id The ID of the instance.
+     * @return JsonResponse A JSON response containing the instance.
      */
     public function show(int $instance_id): JsonResponse
     {
@@ -62,8 +76,9 @@ class InstanceController extends Controller
 
     /**
      * Returns a specific instance by its data.
-     * @param Request $request
-     * @return JsonResponse
+     *
+     * @param Request $request The request object containing the properties to search for.
+     * @return JsonResponse A JSON response containing the instance.
      */
     public function showByData(Request $request): JsonResponse
     {
@@ -84,8 +99,9 @@ class InstanceController extends Controller
 
     /**
      * Stores a new instance of an entity.
-     * @param InstanceRequest $request
-     * @return JsonResponse
+     *
+     * @param InstanceRequest $request The request object containing the entity and properties.
+     * @return JsonResponse A JSON response containing the newly created instance.
      */
     public function store(InstanceRequest $request): JsonResponse
     {
@@ -100,8 +116,9 @@ class InstanceController extends Controller
 
     /**
      * Updates an instance by its ID.
-     * @param InstanceRequest $request
-     * @return JsonResponse
+     *
+     * @param InstanceRequest $request The request object containing the instance ID and properties.
+     * @return JsonResponse A JSON response containing the updated instance.
      */
     public function update(InstanceRequest $request): JsonResponse
     {
@@ -115,6 +132,9 @@ class InstanceController extends Controller
 
     /**
      * Validates the entity.
+     *
+     * @param string $entityName The name of the entity to validate.
+     * @return Entity|JsonResponse The entity object if found, otherwise a JSON response with an error message.
      */
     public function validateEntity(string $entityName): Entity|JsonResponse
     {
@@ -127,9 +147,10 @@ class InstanceController extends Controller
 
     /**
      * Validates the properties.
-     * @param Entity $entity
-     * @param array $properties
-     * @return array|JsonResponse
+     *
+     * @param Entity $entity The entity to validate the properties against.
+     * @param array $properties The properties to validate.
+     * @return array|JsonResponse An array of validated properties, otherwise a JSON response with an error message.
      */
     public function validateProperties(Entity $entity, array $properties): array|JsonResponse
     {
@@ -143,8 +164,9 @@ class InstanceController extends Controller
 
     /**
      * Deletes an instance by its ID.
-     * @param int $instance_id
-     * @return JsonResponse
+     *
+     * @param int $instance_id The ID of the instance to delete.
+     * @return JsonResponse A JSON response confirming the deletion.
      */
     public function destroy(int $instance_id): JsonResponse
     {

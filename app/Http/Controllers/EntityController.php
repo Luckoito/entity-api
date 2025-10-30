@@ -8,18 +8,29 @@ use App\Repositories\PropertyRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * Class EntityController
+ * @package App\Http\Controllers
+ */
 class EntityController extends Controller
 {
+    /**
+     * @var EntityRepository
+     */
     private EntityRepository $repository;
 
+    /**
+     * EntityController constructor.
+     */
     public function __construct()
     {
         $this->repository = new EntityRepository();
     }
 
     /**
-     * Display a listing of the entities.
-     * @return JsonResponse
+     * Display a listing of all entities.
+     *
+     * @return JsonResponse A JSON response containing all entities.
      */
     public function index(): JsonResponse
     {
@@ -29,8 +40,9 @@ class EntityController extends Controller
 
     /**
      * Returns all records of an entity by entity name.
-     * @param string $entity_name
-     * @return JsonResponse
+     *
+     * @param string $entity_name The name of the entity.
+     * @return JsonResponse A JSON response containing the entity records.
      */
     public function show(string $entity_name): JsonResponse
     {
@@ -40,8 +52,9 @@ class EntityController extends Controller
 
     /**
      * Returns a specific entity by its ID.
-     * @param int $entity_id
-     * @return JsonResponse
+     *
+     * @param int $entity_id The ID of the entity.
+     * @return JsonResponse A JSON response containing the entity.
      */
     public function showById(int $entity_id): JsonResponse
     {
@@ -50,8 +63,9 @@ class EntityController extends Controller
     }
 
     /**
-     * Counts the number of records.
-     * @return JsonResponse
+     * Counts the total number of entities.
+     *
+     * @return JsonResponse A JSON response containing the total number of entities.
      */
     public function count(): JsonResponse
     {
@@ -60,8 +74,9 @@ class EntityController extends Controller
 
     /**
      * Store a newly created entity in storage and sets its properties.
-     * @param EntityRequest $request
-     * @return JsonResponse
+     *
+     * @param EntityRequest $request The request object containing the entity name and properties.
+     * @return JsonResponse A JSON response containing the newly created entity.
      */
     public function store(EntityRequest $request): JsonResponse
     {
@@ -76,8 +91,9 @@ class EntityController extends Controller
 
     /**
      * Renames a specified entity.
-     * @param EntityRequest $request
-     * @return JsonResponse
+     *
+     * @param Request $request The request object containing the entity ID and new name.
+     * @return JsonResponse A JSON response containing the renamed entity.
      */
     public function rename(Request $request): JsonResponse
     {
@@ -92,8 +108,9 @@ class EntityController extends Controller
 
     /**
      * Deletes the specified entity.
-     * @param int $entity_id
-     * @return JsonResponse
+     *
+     * @param int $entity_id The ID of the entity to delete.
+     * @return JsonResponse A JSON response confirming the deletion.
      */
     public function destroy(int $entity_id): JsonResponse
     {

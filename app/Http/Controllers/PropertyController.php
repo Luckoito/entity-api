@@ -7,18 +7,29 @@ use App\Repositories\PropertyRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ * Class PropertyController
+ * @package App\Http\Controllers
+ */
 class PropertyController extends Controller
 {
+    /**
+     * @var PropertyRepository
+     */
     private PropertyRepository$repository;
 
+    /**
+     * PropertyController constructor.
+     */
     public function __construct()
     {
         $this->repository = new PropertyRepository();
     }
 
     /**
-     * Returns all records.
-     * @return JsonResponse
+     * Returns all properties.
+     *
+     * @return JsonResponse A JSON response containing all properties.
      */
     public function index(): JsonResponse
     {
@@ -27,9 +38,9 @@ class PropertyController extends Controller
     }
 
     /**
-     * Counts the number of records.
+     * Counts the total number of properties.
      *
-     * @return JsonResponse
+     * @return JsonResponse A JSON response containing the total number of properties.
      */
     public function count(): JsonResponse
     {
@@ -38,8 +49,9 @@ class PropertyController extends Controller
 
     /**
      * Finds a property by its ID.
-     * @param int $property_id
-     * @return JsonResponse
+     *
+     * @param int $property_id The ID of the property.
+     * @return JsonResponse A JSON response containing the property.
      */
     public function show(int $property_id): JsonResponse
     {
@@ -49,8 +61,9 @@ class PropertyController extends Controller
 
     /**
      * Finds a property by its name.
-     * @param string $name
-     * @return JsonResponse
+     *
+     * @param string $name The name of the property.
+     * @return JsonResponse A JSON response containing the property.
      */
     public function showByName(string $name): JsonResponse
     {
@@ -60,8 +73,9 @@ class PropertyController extends Controller
 
     /**
      * Stores a new property.
-     * @param PropertyRequest $request
-     * @return JsonResponse
+     *
+     * @param PropertyRequest $request The request object containing the property name and entity ID.
+     * @return JsonResponse A JSON response containing the newly created property.
      */
     public function store(PropertyRequest $request): JsonResponse
     {
@@ -71,8 +85,9 @@ class PropertyController extends Controller
 
     /**
      * Renames a property.
-     * @param Request $request
-     * @return JsonResponse
+     *
+     * @param Request $request The request object containing the property ID and new name.
+     * @return JsonResponse A JSON response containing the renamed property.
      */
     public function rename(Request $request): JsonResponse
     {
@@ -83,8 +98,9 @@ class PropertyController extends Controller
 
     /**
      * Deletes a property.
-     * @param int $property_id
-     * @return JsonResponse
+     *
+     * @param int $property_id The ID of the property to delete.
+     * @return JsonResponse A JSON response confirming the deletion.
      */
     public function destroy(int $property_id): JsonResponse
     {

@@ -4,8 +4,15 @@ namespace App\Repositories;
 use App\Models\Entity;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class EntityRepository
+ * @package App\Repositories
+ */
 class EntityRepository
 {
+    /**
+     * @var Entity
+     */
     protected Entity $model;
 
     /**
@@ -19,7 +26,7 @@ class EntityRepository
     /**
      * Get all entities.
      *
-     * @return Collection
+     * @return Collection A collection of all entities.
      */
     public function getAll(): Collection
     {
@@ -29,8 +36,8 @@ class EntityRepository
     /**
      * Get entity records by name.
      *
-     * @param string $name
-     * @return Entity|null
+     * @param string $name The name of the entity.
+     * @return Entity|null The entity object if found, otherwise null.
      */
     public function getByName(string $name): ?Entity
     {
@@ -40,8 +47,8 @@ class EntityRepository
     /**
      * Create a new entity.
      *
-     * @param string $name
-     * @return Entity
+     * @param string $name The name of the new entity.
+     * @return Entity The newly created entity.
      */
     public function create(string $name): Entity
     {
@@ -51,9 +58,9 @@ class EntityRepository
     /**
      * Renames an existing entity.
      *
-     * @param int $id
-     * @param string $name
-     * @return Entity
+     * @param int $id The ID of the entity to rename.
+     * @param string $name The new name for the entity.
+     * @return Entity The renamed entity.
      */
     public function rename(int $id, string $name): Entity
     {
@@ -65,7 +72,7 @@ class EntityRepository
     /**
      * Deletes the specified entity.
      *
-     * @param int $entity_id
+     * @param int $entity_id The ID of the entity to delete.
      * @return void
      */
     public function delete(int $entity_id): void
@@ -77,8 +84,8 @@ class EntityRepository
     /**
      * Finds an entity by its ID.
      *
-     * @param int $entity_id
-     * @return Entity
+     * @param int $entity_id The ID of the entity to find.
+     * @return Entity The entity object.
      */
     public function find(int $entity_id): Entity
     {

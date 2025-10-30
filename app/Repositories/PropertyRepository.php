@@ -6,8 +6,15 @@ use App\Models\Entity;
 use App\Models\Property;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class PropertyRepository
+ * @package App\Repositories
+ */
 class PropertyRepository
 {
+    /**
+     * @var Property
+     */
     protected Property $model;
 
     /**
@@ -21,8 +28,8 @@ class PropertyRepository
     /**
      * Finds a property by its ID.
      *
-     * @param int $id
-     * @return Property
+     * @param int $id The ID of the property to find.
+     * @return Property The property object.
      */
     public function findById(int $id): Property
     {
@@ -32,9 +39,9 @@ class PropertyRepository
     /**
      * Finds a property by its entity id and name.
      *
-     * @param int $entityId
-     * @param string $name
-     * @return Property|null
+     * @param int $entityId The ID of the entity.
+     * @param string $name The name of the property.
+     * @return Property|null The property object if found, otherwise null.
      */
     public function findByEntityIdAndName(int $entityId, string $name): ?Property
     {
@@ -46,11 +53,11 @@ class PropertyRepository
     /**
      * Stores a new property.
      *
-     * @param string $name
-     * @param int $entityId
-     * @return Property
+     * @param string $name The name of the new property.
+     * @param int $entityId The ID of the entity that the property belongs to.
+     * @return Property The newly created property.
      */
-    public function store(string $name, int $entityId)
+    public function store(string $name, int $entityId): Property
     {
         return $this->model->create([
             'name' => $name,
@@ -61,9 +68,9 @@ class PropertyRepository
     /**
      * Renames an existing property.
      *
-     * @param int $id
-     * @param string $name
-     * @return Property
+     * @param int $id The ID of the property to rename.
+     * @param string $name The new name for the property.
+     * @return Property The renamed property.
      */
     public function rename(int $id, string $name): Property
     {
@@ -75,7 +82,7 @@ class PropertyRepository
     /**
      * Deletes a property.
      *
-     * @param int $id
+     * @param int $id The ID of the property to delete.
      * @return void
      */
     public function destroy(int $id): void
@@ -87,9 +94,9 @@ class PropertyRepository
     /**
      * Validates the properties in an array against the entity and returns ids and values.
      *
-     * @param Entity $entity
-     * @param array $propertiesToValidate
-     * @return array: [propertyId => value]
+     * @param Entity $entity The entity to validate the properties against.
+     * @param array $propertiesToValidate The properties to validate.
+     * @return array An array of validated properties, with property IDs as keys and their values as values.
      */
     public function validateProperties(Entity $entity, array $propertiesToValidate): array
     {
@@ -104,7 +111,7 @@ class PropertyRepository
     /**
      * Gets all properties.
      *
-     * @return Collection
+     * @return Collection A collection of all properties.
      */
     public function getAll(): Collection
     {
@@ -114,8 +121,8 @@ class PropertyRepository
     /**
      * Finds a property by its ID.
      *
-     * @param int $property_id
-     * @return Property
+     * @param int $property_id The ID of the property to find.
+     * @return Property The property object.
      */
     public function find(int $property_id): Property
     {
@@ -125,8 +132,8 @@ class PropertyRepository
     /**
      * Finds properties by name.
      *
-     * @param string $name
-     * @return Collection
+     * @param string $name The name of the property to find.
+     * @return Collection A collection of properties that match the specified name.
      */
     public function findByName(string $name): Collection
     {
